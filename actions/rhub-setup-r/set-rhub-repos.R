@@ -62,15 +62,16 @@ set_repos_linux <- function() {
 }
 
 set_repos_macos <- function() {
-  arch <- Sys.info()[["machine"]]
-  if (arch != "x86_64") {
-    return(no_repos())
-  }
   rver <- getRversion()
   if (rver < "4.4.0" || rver >= "4.5.0") {
     return(no_repos())
   }
-  add_repo(c(RHUB = "https://raw.githubusercontent.com/r-hub/repos/main/macos-x86_64/4.4/"))
+  arch <- Sys.info()[["machine"]]
+  if (arch == "x86_64") {
+    add_repo(c(RHUB = "https://raw.githubusercontent.com/r-hub/repos/main/macos-x86_64/4.4/"))
+  } else {
+    add_repo(c(RHUB = "https://raw.githubusercontent.com/r-hub/repos/main/macos-arm64/4.4/"))
+  }
 }
 
 add_repo <- function(repo) {
