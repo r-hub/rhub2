@@ -4,3 +4,5 @@
 ^Makefile$
 ^README\.Rmd$
 ^README[.]html$
+^rhub2\.Rproj$
+^\.Rproj\.user$
